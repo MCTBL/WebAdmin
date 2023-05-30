@@ -3,18 +3,18 @@
 <head>
 
     <title>Responsive Table</title>
-    <link th:include="tables/common :: commonheader">
+    <link th:include="common :: commonheader">
 </head>
 
 <body class="sticky-header">
 
 <section>
-    <div th:include="tables/common :: commonleft"></div>
+    <div th:include="common :: commonleft"></div>
     
     <!-- main content start-->
     <div class="main-content" >
 
-        <div th:replace="tables/common :: commonup"></div>
+        <div th:replace="common :: commonup"></div>
 
         <!-- page heading start-->
         <div class="page-heading">
@@ -506,7 +506,7 @@
     <!-- main content end-->
 </section>
 
-<div th:include="tables/common :: commonscript"></div>
+<div th:include="common :: commonscript"></div>
 
 </body>
 </html>

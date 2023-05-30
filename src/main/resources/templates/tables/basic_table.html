@@ -3,17 +3,17 @@
 
 <head>
     <title>Basic Table</title>
-    <link th:include="tables/common :: commonheader">
+    <link th:include="common :: commonheader">
 </head>
 
 <body class="sticky-header">
     <section>
-        <div th:include="tables/common :: commonleft"></div>
+        <div th:include="common :: commonleft"></div>
 
         <!-- main content start-->
         <div class="main-content">
 
-            <div th:replace="tables/common :: commonup"></div>
+            <div th:replace="common :: commonup"></div>
 
             <!-- 页面标题开始-->
             <div class="page-heading">
@@ -358,7 +358,7 @@
             <!--footer  end--> </div>
         <!-- main content end--> </section>
 
-<div th:include="tables/common :: commonscript"></div>
+<div th:include="common :: commonscript"></div>
 
 </body>
 
