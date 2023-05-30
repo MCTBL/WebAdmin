@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>所有菜品</title>
+    <link th:include="tables/common :: commonheader">
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <div th:include="tables/common :: commonleft"></div>
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <div th:replace="tables/common :: commonup"></div>
+
+            <!-- page heading start-->
+            <div class="page-heading">
+                <h3 style="font-size: xx-large;">
+                    所有菜品
+                </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#"> 控制面板 </a>
+                    </li>
+                    <li>
+                        <a href="#"> 表格 </a>
+                    </li>
+                    <li class="active"> 所有菜品 </li>
+                </ul>
+            </div>
+            <!-- page heading end-->
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                菜品表
+                                <span class="tools pull-right">
+                                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                    <a href="javascript:;" class="fa fa-times"></a>
+                                </span>
+                            </header>
+                            <div class="panel-body">
+                                <div class="adv-table">
+                                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                                        <thead>
+                                            <tr>
+                                                <th>菜品编号</th>
+                                                <th>菜品名</th>
+                                                <th>菜品种类</th>
+                                                <th>菜品单价</th>
+                                                <th>修改/删除</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr align="center" class="gradeX" th:each="row : ${list}">
+                                                <td th:text="${row.dishesId}"></td>
+                                                <td th:text="${row.dishesName}"></td>
+                                                <td th:text="${map.get(row.dishesCategory)}"></td>
+                                                <td th:text="${row.dishesPrice}"></td>
+                                                <td>修改/删除</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>菜品编号</th>
+                                                <th>菜品名</th>
+                                                <th>菜品种类</th>
+                                                <th>菜品单价</th>
+                                                <th>修改/删除</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <!--body wrapper end-->
+
+            <!--footer section start-->
+            <footer>
+                2014 &copy; AdminEx by ThemeBucket
+            </footer>
+            <!--footer section end-->
+
+
+        </div>
+        <!-- main content end-->
+    </section>
+
+
+    <!--dynamic table-->
+    <script type="text/javascript" language="javascript" src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+    <!--dynamic table initialization -->
+    <script src="js/dynamic_table_init.js"></script>
+
+
+    <div th:include="tables/common :: commonscript"></div>
+
+</body>
+
+</html>
