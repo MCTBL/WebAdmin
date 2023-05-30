@@ -1,5 +1,7 @@
 package com.mctbl.webadmin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +23,24 @@ public class indexcontroller {
 
     @GetMapping(value = { "/", "/login" })
     public String loginPage() {
-        return "login";
+        return "/login";
     }
 
     @PostMapping("/login")
     public String main(User user, HttpSession session, Model model) {
-        boolean login = StringUtils.hasText(user.getUserName()) && StringUtils.hasText(user.getUserPass());
-        if (login) {
-            session.setAttribute("loginUser", user);
-            return "redirect:/index.html";
+        if (StringUtils.hasText(user.getUserName()) && StringUtils.hasText(user.getUserPass())) {
+            List<User> list = us.list();
+            for (User temp : list) {
+                if (temp.getUserName().equals(user.getUserName()) && temp.getUserPass().equals(user.getUserPass())) {
+                    session.setAttribute("loginUser", user);
+                    return "redirect:/index.html";
+                }
+            }
+            session.setAttribute("msg", "请核对用户名密码是否正确");
+            return "redirect:/login";
         } else {
-            model.addAttribute("msg", "请核对用户名密码是否正确");
-            return "login";
+            session.setAttribute("msg", "请输入用户名及密码");
+            return "redirect:/login";
         }
 
     }
