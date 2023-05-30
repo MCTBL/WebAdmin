@@ -33,7 +33,12 @@ public class indexcontroller {
             for (User temp : list) {
                 if (temp.getUserName().equals(user.getUserName()) && temp.getUserPass().equals(user.getUserPass())) {
                     session.setAttribute("loginUser", user);
-                    return "redirect:/index.html";
+                    // 判断是否为管理员
+                    if (temp.getUserIsAdmin() == 1) {
+                        return "redirect:/index.html";
+                    } else {
+                        return "redirect:/index.html";
+                    }
                 }
             }
             session.setAttribute("msg", "请核对用户名密码是否正确");
