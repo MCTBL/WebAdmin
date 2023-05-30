@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mctbl.webadmin.bean.Dishes;
 import com.mctbl.webadmin.bean.index_str;
 import com.mctbl.webadmin.service.DishesService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class tablecontroller {
 
     @Autowired
@@ -44,8 +48,13 @@ public class tablecontroller {
         model.addAttribute("map", index_str.getMap());
         model.addAttribute("page", "all_dishes");
         model.addAttribute("pageclass", "table");
-
         return "tables/all_dishes";
     }
 
+    @GetMapping("/dishes/del/{id}")
+    public String deleteDishes(@PathVariable("id") Integer id) {
+        log.info("======================id========================", id);
+        ds.removeById(id);
+        return "redirect:/all_dishes";
+    }
 }
