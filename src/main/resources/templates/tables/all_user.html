@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>所有用户</title>
+    <link th:include="common :: commonheader">
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <div th:include="common :: commonleft"></div>
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <div th:replace="common :: commonup"></div>
+
+            <!-- page heading start-->
+            <div class="page-heading">
+                <h3 style="font-size: xx-large;">
+                    所有用户
+                </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#"> 控制面板 </a>
+                    </li>
+                    <li>
+                        <a href="#"> 表格 </a>
+                    </li>
+                    <li class="active"> 所有用户 </li>
+                </ul>
+            </div>
+            <!-- page heading end-->
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                用户表
+                            </header>
+                            <div class="panel-body">
+                                <div class="adv-table">
+                                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                                        <thead>
+                                            <tr>
+                                                <th width="14.28%">用户编号</th>
+                                                <th width="14.28%">用户名</th>
+                                                <th width="14.28%">手机号</th>
+                                                <th width="14.28%">密码</th>
+                                                <th width="14.28%">是否为管理员</th>
+                                                <th width="14.28%">用户等级</th>
+                                                <th width="14.28%">修改/删除</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr align="center" style="font-size: medium;" class="gradeX"
+                                                th:each="row : ${list}">
+                                                <td th:text="${row.userId}"></td>
+                                                <td th:text="${row.userName}"></td>
+                                                <td th:text="${row.userPhone}"></td>
+                                                <td th:text="${row.userPass}"></td>
+                                                <td th:text="${row.userIsAdmin == 0 ? '否' : '是'}"></td>
+                                                <td th:text="${row.userLevel}"></td>
+                                                <td>
+                                                    <div class="btn-group btn-group-justified">
+                                                        <a href="#" class="btn btn-info">修改</a>
+                                                        <a th:href="@{#}" class="btn btn-danger">删除</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th width="14.28%">用户编号</th>
+                                                <th width="14.28%">用户名</th>
+                                                <th width="14.28%">手机号</th>
+                                                <th width="14.28%">密码</th>
+                                                <th width="14.28%">是否为管理员</th>
+                                                <th width="14.28%">用户等级</th>
+                                                <th width="14.28%">修改/删除</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <!--body wrapper end-->
+
+            <!--footer section start-->
+            <footer>
+                2014 &copy; AdminEx by ThemeBucket
+            </footer>
+            <!--footer section end-->
+
+
+        </div>
+        <!-- main content end-->
+    </section>
+
+
+    <!--dynamic table-->
+    <script type="text/javascript" language="javascript" src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+    <!--dynamic table initialization -->
+    <script src="js/dynamic_table_init.js"></script>
+
+
+    <div th:include="common :: commonscript"></div>
+
+</body>
+
+</html>

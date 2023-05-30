@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mctbl.webadmin.bean.Dishes;
+import com.mctbl.webadmin.bean.User;
 import com.mctbl.webadmin.bean.index_str;
 import com.mctbl.webadmin.service.DishesService;
-
-import lombok.extern.slf4j.Slf4j;
+import com.mctbl.webadmin.service.UserService;
 
 @Controller
-@Slf4j
 public class tablecontroller {
 
     @Autowired
     DishesService ds;
+
+    @Autowired
+    UserService us;
 
     @GetMapping("/basic_table")
     public String basic_table() {
@@ -53,8 +55,16 @@ public class tablecontroller {
 
     @GetMapping("/dishes/del/{id}")
     public String deleteDishes(@PathVariable("id") Integer id) {
-        log.info("======================id========================", id);
         ds.removeById(id);
         return "redirect:/all_dishes";
+    }
+
+    @GetMapping("/all_user")
+    public String all_user(Model model) {
+        List<User> list = us.list();
+        model.addAttribute("list", list);
+        model.addAttribute("page", "all_user");
+        model.addAttribute("pageclass", "table");
+        return "tables/all_user";
     }
 }
