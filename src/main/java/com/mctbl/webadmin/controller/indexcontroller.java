@@ -66,6 +66,5 @@ public class indexcontroller {
             session.setAttribute("msg", "非法访问");
         }
         return "redirect:/login";
-
     }
 }
