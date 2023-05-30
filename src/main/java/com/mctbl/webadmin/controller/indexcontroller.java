@@ -27,7 +27,6 @@ public class indexcontroller {
     @PostMapping("/login")
     public String main(User user, HttpSession session, Model model) {
         boolean login = StringUtils.hasText(user.getUserName()) && StringUtils.hasText(user.getUserPass());
-        // us.
         if (login) {
             session.setAttribute("loginUser", user);
             return "redirect:/index.html";
@@ -40,6 +39,8 @@ public class indexcontroller {
 
     @GetMapping("/index.html")
     public String mainPage(HttpSession session, Model model) {
+        model.addAttribute("page", "index");
+        model.addAttribute("pageclass", "index");
         return "index";
     }
 

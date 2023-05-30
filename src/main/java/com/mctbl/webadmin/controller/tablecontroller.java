@@ -42,6 +42,9 @@ public class tablecontroller {
         List<Dishes> list = ds.list();
         model.addAttribute("list", list);
         model.addAttribute("map", index_str.getMap());
+        model.addAttribute("page", "all_dishes");
+        model.addAttribute("pageclass", "table");
+
         return "tables/all_dishes";
     }
 

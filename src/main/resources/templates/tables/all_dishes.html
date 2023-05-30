@@ -40,10 +40,6 @@
                         <section class="panel">
                             <header class="panel-heading">
                                 菜品表
-                                <span class="tools pull-right">
-                                    <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                    <a href="javascript:;" class="fa fa-times"></a>
-                                </span>
                             </header>
                             <div class="panel-body">
                                 <div class="adv-table">
@@ -59,11 +55,16 @@
                                         </thead>
                                         <tbody>
                                             <tr align="center" class="gradeX" th:each="row : ${list}">
-                                                <td th:text="${row.dishesId}"></td>
-                                                <td th:text="${row.dishesName}"></td>
-                                                <td th:text="${map.get(row.dishesCategory)}"></td>
-                                                <td th:text="${row.dishesPrice}"></td>
-                                                <td>修改/删除</td>
+                                                <td width="20%" th:text="${row.dishesId}"></td>
+                                                <td width="20%" th:text="${row.dishesName}"></td>
+                                                <td width="20%" th:text="${map.get(row.dishesCategory)}"></td>
+                                                <td width="20%" th:text="${row.dishesPrice}"></td>
+                                                <td width="20%">
+                                                    <div class="btn-group btn-group-justified">
+                                                        <a href="#" class="btn btn-info">修改</a>
+                                                        <a href="#" class="btn btn-danger">删除</a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
