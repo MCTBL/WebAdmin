@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mctbl.webadmin.bean.Dishes;
 import com.mctbl.webadmin.bean.User;
@@ -51,12 +50,6 @@ public class tablecontroller {
         model.addAttribute("page", "all_dishes");
         model.addAttribute("pageclass", "table");
         return "tables/all_dishes";
-    }
-
-    @GetMapping("/dishes/del/{id}")
-    public String deleteDishes(@PathVariable("id") Integer id) {
-        ds.removeById(id);
-        return "redirect:/all_dishes";
     }
 
     @GetMapping("/all_user")
