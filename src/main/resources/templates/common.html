@@ -54,14 +54,8 @@
 
                 <!--sidebar nav start-->
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li th:class="${page=='index' ? 'menu-list nav-active' : 'menu-list'}">><a
-                            th:href="@{/index.html}"><i class="fa fa-home"></i>
-                            <span>控制台</span></a>
-                        <ul class="sub-menu-list">
-                            <li th:class="${page=='index' ? 'active' : 'deactive'}"><a href="index.html"> 首页</a></li>
-                        </ul>
-                    </li>
-
+                    <li th:class="${page=='index' ? 'active' : 'deactive'}"><a href="index.html"><i
+                                class="fa fa-home"></i><span>首页</span></a></li>
                     <li th:class="${pageclass=='table' ? 'menu-list nav-active' : 'menu-list'}"><a href="#"><i
                                 class="fa fa-th-list"></i> <span>表格</span></a>
                         <ul class="sub-menu-list">
@@ -72,10 +66,8 @@
                             <li th:class="${page=='all_order' ? 'active' : 'deactive'}"><a th:href="@{/all_order}">
                                     所有订单</a></li>
                         </ul>
-
                     </li>
                     <li><a th:href="@{/logout}"><i class="fa fa-sign-in"></i> <span>退出</span></a></li>
-
                 </ul>
                 <!--sidebar nav end-->
 
