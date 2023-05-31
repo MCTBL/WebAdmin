@@ -52,11 +52,21 @@ public class tablecontroller {
     @GetMapping("/all_order")
     public String all_order(Model model) {
         List<Order> order_list = os.list();
+        List<User> user_list = us.list();
+        List<Dishes> dishes_list = ds.list();
+        Map<Integer, User> user_map = new HashMap<Integer, User>();
+        Map<Integer, Dishes> dishes_map = new HashMap<Integer, Dishes>();
+        for (User t : user_list) {
+            user_map.put(t.getUserId(), t);
+        }
+        for (Dishes t : dishes_list) {
+            dishes_map.put(t.getDishesId(), t);
+        }
         List<Map<String, String>> list = new ArrayList<>();
         for (Order order : order_list) {
             Map<String, String> ans = new HashMap<String, String>();
-            ans.put("order_user_name", us.getById(order.getOrderUserId()).getUserName());
-            ans.put("order_dishes_name", ds.getById(order.getOrderDishesId()).getDishesName());
+            ans.put("order_user_name", user_map.get(order.getOrderUserId()).getUserName());
+            ans.put("order_dishes_name", dishes_map.get(order.getOrderDishesId()).getDishesName());
             ans.put("order_count", order.getOrderCount() + "");
             ans.put("order_total_cost", order.getOrderTotalCost() + "");
             ans.put("order_id", order.getOrderId() + "");
