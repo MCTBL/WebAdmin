@@ -23,11 +23,7 @@ public class indexcontroller {
 
     @GetMapping(value = { "/", "/login" })
     public String loginPage(HttpSession session) {
-        if (session.getAttribute("user") != null) {
-            return "redirect:/index.html";
-        } else {
-            return "/login";
-        }
+        return "login";
     }
 
     @PostMapping("/login")
@@ -69,6 +65,14 @@ public class indexcontroller {
         } else {
             session.setAttribute("msg", "非法访问");
         }
+
         return "redirect:/login";
     }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+        model.addAttribute("test", "1234132412421");
+        return "test";
+    }
+
 }

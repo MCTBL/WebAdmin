@@ -18,7 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         } else {
             session.setAttribute("msg", "请先登录");
-            response.sendRedirect("/");
+            response.sendRedirect("/login");
             return false;
         }
     }
