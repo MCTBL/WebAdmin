@@ -143,7 +143,7 @@ INSERT INTO `user` (`user_id`, `user_phone`, `user_name`, `user_pass`, `user_is_
 INSERT INTO `user` (`user_id`, `user_phone`, `user_name`, `user_pass`, `user_is_admin`, `user_level`) VALUES('10','46809038999','小鬼','740017062019897','0','0');
 INSERT INTO `user` (`user_id`, `user_phone`, `user_name`, `user_pass`, `user_is_admin`, `user_level`) VALUES('11','85996049778','小青','860403404004834','0','0');
 INSERT INTO `user` (`user_id`, `user_phone`, `user_name`, `user_pass`, `user_is_admin`, `user_level`) VALUES('12','86630046717','小林','684699755425476','0','0');
-INSERT INTO `user` (`user_id`, `user_phone`, `user_name`, `user_pass`, `user_is_admin`, `user_level`) VALUES('13','cuser','小林','1','0','0');
+INSERT INTO `user` (`user_id`, `user_phone`, `user_name`, `user_pass`, `user_is_admin`, `user_level`) VALUES('13','11111111111','cuser','1','0','0');
 
 INSERT INTO `order` VALUES(NULL, '2023/5/1 1:0:57', 8, 68, 7, 126);
 INSERT INTO `order` VALUES(NULL, '2023/5/1 1:46:44', 12, 52, 10, 500);
