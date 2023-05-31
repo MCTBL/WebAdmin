@@ -23,7 +23,11 @@ CREATE TABLE IF NOT EXISTS `order`(
    `order_dishes_id` INT UNSIGNED NOT NULL,
    `order_count` INT UNSIGNED NOT NULL,
    `order_total_cost` DOUBLE NOT NULL,
-   FOREIGN KEY(`order_user_id`) REFERENCES `user`(`user_id`),
-   FOREIGN KEY(`order_dishes_id`) REFERENCES `dishes`(`dishes_id`),
+   FOREIGN KEY(`order_user_id`)
+     REFERENCES `user`(`user_id`)
+     ON DELETE CASCADE,
+   FOREIGN KEY(`order_dishes_id`)
+     REFERENCES `dishes`(`dishes_id`)
+     ON DELETE CASCADE,
    PRIMARY KEY ( `order_id` )
 )DEFAULT CHARSET=UTF8MB3;
