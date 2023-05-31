@@ -22,8 +22,12 @@ public class indexcontroller {
     UserService us;
 
     @GetMapping(value = { "/", "/login" })
-    public String loginPage() {
-        return "/login";
+    public String loginPage(HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            return "redirect:/index.html";
+        } else {
+            return "/login";
+        }
     }
 
     @PostMapping("/login")

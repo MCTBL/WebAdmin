@@ -28,18 +28,7 @@ class WebAdminApplicationTests {
 
 	@Test
 	void test() {
-		List<Order> order_list = os.list();
-		List<Map<String, String>> list = new ArrayList<>();
-		for (Order order : order_list) {
-			Map<String, String> ans = new HashMap<String, String>();
-			ans.put("order_user_name", us.getById(order.getOrderUserId()).getUserName());
-			ans.put("order_dishes_name", ds.getById(order.getOrderDishesId()).getDishesName());
-			ans.put("order_count", order.getOrderCount() + "");
-			ans.put("order_total_cost", order.getOrderTotalCost() + "");
-			ans.put("order_id", order.getOrderId() + "");
-			ans.put("order_time", order.getOrderTime().toString());
-			list.add(ans);
-		}
+		Order o = new Order();
 	}
 
 }

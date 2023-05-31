@@ -4,6 +4,12 @@
 <head>
     <title>所有订单</title>
     <link th:include="common :: commonheader">
+    <!--pickers css-->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-datepicker/css/datepicker-custom.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-timepicker/css/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
 </head>
 
 <body class="sticky-header">
@@ -40,7 +46,7 @@
                         <section class="panel">
                             <header class="panel-heading">
                                 订单表
-                                <a class="btn btn-success tools pull-right" type="button" href="#addDishes"
+                                <a class="btn btn-success tools pull-right" type="button" href="#addOrder"
                                     data-toggle="modal">新建订单</a>
                             </header>
                             <div class="panel-body">
@@ -68,7 +74,8 @@
                                                 <td>
                                                     <div class="btn-group btn-group-justified">
                                                         <a href="#" class="btn btn-info">修改</a>
-                                                        <a th:href="@{#}" class="btn btn-danger">删除</a>
+                                                        <a th:href="@{/dishes/del/{id}(id=${row.order_id})}"
+                                                            class="btn btn-danger">删除</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -94,45 +101,53 @@
             </div>
             <!--body wrapper end-->
 
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addDishes"
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addOrder"
                 class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                            <h4 class="modal-title">添加菜品</h4>
+                            <h4 class="modal-title">新建订单</h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form" method="post" th:action="@{/add_dishes}">
+                            <form role="form" method="post" th:action="@{/add_order}">
                                 <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">菜品名</label>
-                                    <input name="dishesName" type="text" class="form-control" placeholder="请输入菜品名">
+                                    <label class="control-label col-md-4"> 选择时间</label>
+                                    <div class="col-md-6">
+                                        <input size="16" type="datetime" value="2023-05-01 00:00" readonly
+                                            class="form_datetime form-control" name="time">
+                                    </div>
+                                    <br>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">菜系选择</label>
-                                    <select class="form-control m-bot15" name="dishesCategory">
-                                        <option value="0">家常菜</option>
-                                        <option value="1">鲁菜</option>
-                                        <option value="2">粤菜</option>
-                                        <option value="3">江苏菜</option>
-                                        <option value="4">闽菜</option>
-                                        <option value="5">浙江菜</option>
-                                        <option value="6">湘菜</option>
-                                        <option value="7">徽菜</option>
-                                        <option value="8">川菜</option>
-                                        <option value="9">外国菜</option>
+                                    <label class="col-sm-2 col-sm-2 control-label">下单客户</label>
+                                    <select class="form-control m-bot15" name="orderUserId">
+                                        <div th:each="user : ${user_list}">
+                                            <option th:value="${user.userId}" th:text="${user.userName}"></option>
+                                        </div>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">单价</label>
-                                    <input name="dishesPrice" type="text" class="form-control" placeholder="请输入单价">
+                                    <label class="col-sm-2 col-sm-2 control-label">菜品选择</label>
+                                    <select class="form-control m-bot15" name="orderDishesId">
+                                        <div th:each="dishes : ${dishes_list}">
+                                            <option th:value="${dishes.dishesId}" th:text="${dishes.dishesName}">
+                                            </option>
+                                        </div>
+                                    </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary">确认添加菜品</button>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">下单数量</label>
+                                    <input name="orderCount" type="text" class="form-control" placeholder="请输入下单数量">
+                                </div>
+                                <button type="submit" class="btn btn-primary">确认添加订单</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+
 
 
             <div th:replace="common :: commonfooter">
@@ -151,6 +166,23 @@
 
 
     <div th:include="common :: commonscript"></div>
+
+
+    <!--pickers plugins-->
+    <script type="text/javascript" src="js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+    <!--pickers initialization-->
+    <script src="js/pickers-init.js"></script>
+
+
+
+    <!--common scripts for all pages-->
+    <script src="js/scripts.js"></script>
 
 </body>
 

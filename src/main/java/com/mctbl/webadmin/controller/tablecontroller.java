@@ -74,6 +74,8 @@ public class tablecontroller {
             list.add(ans);
         }
         model.addAttribute("list", list);
+        model.addAttribute("user_list", user_list);
+        model.addAttribute("dishes_list", dishes_list);
         model.addAttribute("page", "all_order");
         model.addAttribute("pageclass", "table");
         return "tables/all_order";
