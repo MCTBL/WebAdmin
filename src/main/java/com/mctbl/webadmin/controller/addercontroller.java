@@ -45,7 +45,7 @@ public class addercontroller {
         return "redirect:/all_dishes";
     }
 
-    @PostMapping("add_order")
+    @PostMapping("/add_order")
     public String addOrder(Order order, HttpServletRequest httpServletRequest) {
         order.setOrderTotalCost(ds.getById(order.getOrderDishesId()).getDishesPrice() * order.getOrderCount());
         order.setOrderTime(Timestamp.valueOf(httpServletRequest.getParameter("time") + ":00"));
