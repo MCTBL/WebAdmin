@@ -1,14 +1,12 @@
 package com.mctbl.webadmin.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.mctbl.webadmin.bean.Dishes;
 import com.mctbl.webadmin.bean.User;
 import com.mctbl.webadmin.service.DishesService;
 import com.mctbl.webadmin.service.UserService;
@@ -23,13 +21,19 @@ public class addercontroller {
     UserService us;
 
     @PostMapping("/add_user")
-    public String add_user(User user, HttpSession session, Model model) {
+    public String add_user(User user) {
         if (user.getUserIsAdmin() == null) {
             user.setUserIsAdmin(0);
         }
         user.setUserLevel(0);
         us.save(user);
         return "redirect:/all_user";
+    }
+
+    @PostMapping("/add_dishes")
+    public String add_dishes(Dishes dishes) {
+        ds.save(dishes);
+        return "redirect:/all_dishes";
     }
 
     @GetMapping("/user/del/{id}")
