@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>所有订单</title>
+    <link th:include="common :: commonheader">
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <div th:include="common :: commonleft"></div>
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <div th:replace="common :: commonup"></div>
+
+            <!-- page heading start-->
+            <div class="page-heading">
+                <h3 style="font-size: xx-large;">
+                    所有订单
+                </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#"> 控制面板 </a>
+                    </li>
+                    <li>
+                        <a href="#"> 表格 </a>
+                    </li>
+                    <li class="active"> 所有订单 </li>
+                </ul>
+            </div>
+            <!-- page heading end-->
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                订单表
+                                <a class="btn btn-success tools pull-right" type="button" href="#addDishes"
+                                    data-toggle="modal">新建订单</a>
+                            </header>
+                            <div class="panel-body">
+                                <div class="adv-table">
+                                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                                        <thead>
+                                            <tr>
+                                                <th width="14.28%">订单编号</th>
+                                                <th width="14.28%">客户名</th>
+                                                <th width="14.28%">菜品名</th>
+                                                <th width="14.28%">菜品数量</th>
+                                                <th width="14.28%">订单总价</th>
+                                                <th width="14.28%">下单时间</th>
+                                                <th width="14.28%">修改/删除</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr align="center" class="gradeX" th:each="row : ${list}">
+                                                <td th:text="${row.order_id}"></td>
+                                                <td th:text="${row.order_user_name}"></td>
+                                                <td th:text="${row.order_dishes_name}"></td>
+                                                <td th:text="${row.order_count}"></td>
+                                                <td th:text="${row.order_total_cost}"></td>
+                                                <td th:text="${row.order_time}"></td>
+                                                <td>
+                                                    <div class="btn-group btn-group-justified">
+                                                        <a href="#" class="btn btn-info">修改</a>
+                                                        <a th:href="@{#}" class="btn btn-danger">删除</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th width="14.28%">订单编号</th>
+                                                <th width="14.28%">客户名</th>
+                                                <th width="14.28%">菜品名</th>
+                                                <th width="14.28%">菜品数量</th>
+                                                <th width="14.28%">订单总价</th>
+                                                <th width="14.28%">下单时间</th>
+                                                <th width="14.28%">修改/删除</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <!--body wrapper end-->
+
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addDishes"
+                class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h4 class="modal-title">添加菜品</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" method="post" th:action="@{/add_dishes}">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">菜品名</label>
+                                    <input name="dishesName" type="text" class="form-control" placeholder="请输入菜品名">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">菜系选择</label>
+                                    <select class="form-control m-bot15" name="dishesCategory">
+                                        <option value="0">家常菜</option>
+                                        <option value="1">鲁菜</option>
+                                        <option value="2">粤菜</option>
+                                        <option value="3">江苏菜</option>
+                                        <option value="4">闽菜</option>
+                                        <option value="5">浙江菜</option>
+                                        <option value="6">湘菜</option>
+                                        <option value="7">徽菜</option>
+                                        <option value="8">川菜</option>
+                                        <option value="9">外国菜</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">单价</label>
+                                    <input name="dishesPrice" type="text" class="form-control" placeholder="请输入单价">
+                                </div>
+                                <button type="submit" class="btn btn-primary">确认添加菜品</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div th:replace="common :: commonfooter">
+
+
+            </div>
+            <!-- main content end-->
+    </section>
+
+
+    <!--dynamic table-->
+    <script type="text/javascript" language="javascript" src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+    <!--dynamic table initialization -->
+    <script src="js/dynamic_table_init.js"></script>
+
+
+    <div th:include="common :: commonscript"></div>
+
+</body>
+
+</html>
