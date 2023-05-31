@@ -18,13 +18,174 @@
 
             <!-- page heading start-->
             <div class="page-heading">
-                Page Tittle goes here
+                <h3 style="font-size: xx-large;">
+                    首页
+                </h3>
             </div>
             <!-- page heading end-->
 
             <!--body wrapper start-->
             <div class="wrapper">
-                Body contents goes here
+                <div class="col-lg-6">
+                    <section class="panel panel-primary">
+                        <header class="panel-heading">
+                            <div style="font-size: larger;">
+                                <c style="font-size: x-large;">近七日统计</c>
+                                <span class="tools pull-right">
+                                    <a class="fa fa-chevron-down" href="javascript:;"></a>
+                                    <a class="fa fa-times" href="javascript:;"></a>
+                                </span>
+                            </div>
+                        </header>
+                        <div class="panel-body" style="font-size: large;">
+                            <div>营收额最高菜品为
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestWeeklySales.get(0)}">糖醋排骨</b>&emsp;
+                                销售额达
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestWeeklySalesFirst + '元'}">100元</b>&emsp;<br><br>
+                                <ul class="list-inline" style="font-size: medium;">
+                                    <li th:each="t,iterStat : ${highestWeeklySales}">
+                                        [[${iterStat.count + ' . ' + t + ' '}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: large;">
+                            <div>最为畅销的菜品为
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestWeeklySalesCount.get(0)}">番茄炒蛋</b>&emsp;
+                                总计卖出
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestWeeklySalesCountFirst + '份'}">60份</b>&emsp;<br><br>
+                                <ul class="list-inline" style="font-size: medium;">
+                                    <li th:each="t,iterStat : ${highestWeeklySalesCount}">
+                                        [[${iterStat.count + ' . ' + t + ' '}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: large;">
+                            <div>最受欢迎的菜系
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);">粤菜</b>&emsp;
+                                总计卖出
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);">600份</b>&emsp;<br><br>
+                                <ul class="list-inline" style="font-size: medium;">
+                                    <li>
+                                        1.糖醋排骨
+                                    </li>
+                                    <li>
+                                        2.番茄炒蛋
+                                    </li>
+                                    <li>
+                                        3.xxxx
+                                    </li>
+                                    <li>
+                                        4.xxxx
+                                    </li>
+                                    <li>
+                                        5.xxxx
+                                    </li>
+                                    <li>
+                                        6.xxxx
+                                    </li>
+                                    <li>
+                                        7.xxxx
+                                    </li>
+                                    <li>
+                                        8.xxxx
+                                    </li>
+                                    <li>
+                                        9.xxxx
+                                    </li>
+                                    <li>
+                                        10.xxxx
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <section class="panel panel-primary">
+                        <header class="panel-heading">
+                            <div style="font-size: larger;">
+                                <c style="font-size: x-large;">当月统计</c>
+                                <span class="tools pull-right">
+                                    <a class="fa fa-chevron-down" href="javascript:;"></a>
+                                    <a class="fa fa-times" href="javascript:;"></a>
+                                </span>
+                            </div>
+                        </header>
+                        <div class="panel-body" style="font-size: large;">
+                            <div>营收额最高菜品为
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestMonthlySales.get(0)}">糖醋排骨</b>&emsp;
+                                销售额达
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestMonthlySalesFirst + '元'}">100元</b>&emsp;<br><br>
+                                <ul class="list-inline" style="font-size: medium;">
+                                    <li th:each="t,iterStat : ${highestMonthlySales}">
+                                        [[${iterStat.count + ' . ' + t + ' '}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: large;">
+                            <div>最为畅销的菜品为
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestMonthlySalesCount.get(0)}">番茄炒蛋</b>&emsp;
+                                总计卖出
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);"
+                                    th:text="${highestMonthlySalesCountFirst + '份'}">60份</b>&emsp;<br><br>
+                                <ul class="list-inline" style="font-size: medium;">
+                                    <li th:each="t,iterStat : ${highestMonthlySalesCount}">
+                                        [[${iterStat.count + ' . ' + t + ' '}]]
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: large;">
+                            <div>最受欢迎的菜系
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);">粤菜</b>&emsp;
+                                总计卖出
+                                &emsp;<b style="font-size: larger;color: rgb(255, 0, 0);">600份</b>&emsp;<br><br>
+                                <ul class="list-inline" style="font-size: medium;">
+                                    <li>
+                                        1.糖醋排骨
+                                    </li>
+                                    <li>
+                                        2.番茄炒蛋
+                                    </li>
+                                    <li>
+                                        3.xxxx
+                                    </li>
+                                    <li>
+                                        4.xxxx
+                                    </li>
+                                    <li>
+                                        5.xxxx
+                                    </li>
+                                    <li>
+                                        6.xxxx
+                                    </li>
+                                    <li>
+                                        7.xxxx
+                                    </li>
+                                    <li>
+                                        8.xxxx
+                                    </li>
+                                    <li>
+                                        9.xxxx
+                                    </li>
+                                    <li>
+                                        10.xxxx
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
             <!--body wrapper end-->
 
