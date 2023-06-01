@@ -42,7 +42,7 @@ public class indexcontroller {
 
     @GetMapping(value = { "/", "/login" })
     public String loginPage(HttpSession session) {
-        if (session.getAttribute("user") != null) {
+        if (session.getAttribute("loginUser") != null) {
             return "redirect:/index.html";
         } else {
             return "login";

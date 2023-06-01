@@ -13,7 +13,8 @@
         <form class="form-signin" action="index.html" method="post" th:action="@{/login}">
             <div class="form-signin-heading text-center">
                 <h1 class="sign-title">登录</h1>
-                <img src="images/login-logo.png" alt="" /><br />
+                <div><img src="https://www.qqje.com/logo/2051.jpg" width="118" height="118" alt="" /></div>
+                <br />
                 <label style="color: red;font-size: large;" th:text="${session.msg}"></label>
             </div>
             <div class="login-wrap">
