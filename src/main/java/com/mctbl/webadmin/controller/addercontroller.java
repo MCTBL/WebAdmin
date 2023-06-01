@@ -48,7 +48,11 @@ public class addercontroller {
     @PostMapping("/add_order")
     public String addOrder(Order order, HttpServletRequest httpServletRequest) {
         order.setOrderTotalCost(ds.getById(order.getOrderDishesId()).getDishesPrice() * order.getOrderCount());
-        order.setOrderTime(Timestamp.valueOf(httpServletRequest.getParameter("time") + ":00"));
+        if (httpServletRequest.getParameter("useCurrentTime").equals("on")) {
+            order.setOrderTime(new Timestamp(System.currentTimeMillis()));
+        } else {
+            order.setOrderTime(Timestamp.valueOf(httpServletRequest.getParameter("time") + ":00"));
+        }
         os.save(order);
         return "redirect:/all_order";
     }

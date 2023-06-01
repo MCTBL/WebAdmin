@@ -120,6 +120,14 @@
                                     <br>
                                 </div>
                                 <div class="form-group">
+                                    <div class="checkbox">
+                                        <div class="icheckbox_minimal">
+                                            <input type="checkbox" name="useCurrentTime">
+                                        </div>
+                                        <label>使用当前时间</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">下单客户</label>
                                     <select class="form-control m-bot15" name="orderUserId">
                                         <div th:each="user : ${user_list}">
