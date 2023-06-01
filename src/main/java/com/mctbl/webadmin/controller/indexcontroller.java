@@ -21,6 +21,7 @@ import com.mctbl.webadmin.bean.Dishes;
 import com.mctbl.webadmin.bean.Order;
 import com.mctbl.webadmin.bean.User;
 import com.mctbl.webadmin.mapper.Ordermapper;
+import com.mctbl.webadmin.service.DishesService;
 import com.mctbl.webadmin.service.UserService;
 import com.mctbl.webadmin.util.getAllMap;
 
@@ -35,6 +36,9 @@ public class indexcontroller {
 
     @Autowired
     getAllMap gam;
+
+    @Autowired
+    DishesService ds;
 
     @GetMapping(value = { "/", "/login" })
     public String loginPage(HttpSession session) {
@@ -73,10 +77,10 @@ public class indexcontroller {
     public String mainPage(HttpSession session, Model model) {
         model.addAttribute("page", "index");
         model.addAttribute("pageclass", "index");
-        List<User> user_list = new ArrayList<User>();
-        List<Dishes> dishes_list = new ArrayList<Dishes>();
         Map<Integer, User> user_map = new HashMap<Integer, User>();
         Map<Integer, Dishes> dishes_map = new HashMap<Integer, Dishes>();
+        List<User> user_list = us.list();
+        List<Dishes> dishes_list = ds.list();
         gam.getAll(user_list, user_map, dishes_list, dishes_map);
         List<Order> mounthList = om.getMounthOrder();
         List<Order> weekList = om.getWeekOrder();

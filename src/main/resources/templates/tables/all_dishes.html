@@ -46,11 +46,36 @@
                             <div class="panel-body">
                                 <div class="adv-table">
                                     <table class="display table table-bordered table-striped" id="dynamic-table">
-                                        <thead>
+                                        <thead style="text-align: center;">
                                             <tr>
                                                 <th>菜品编号</th>
                                                 <th>菜品名</th>
-                                                <th>菜系</th>
+                                                <th>
+                                                    <select onchange="window.location=this.value;">
+                                                        <option th:selected="${type=='-1' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=-1">所有菜系</option>
+                                                        <option th:selected="${type=='0' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=0">家常菜</option>
+                                                        <option th:selected="${type=='1' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=1">鲁菜</option>
+                                                        <option th:selected="${type=='2' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=2">粤菜</option>
+                                                        <option th:selected="${type=='3' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=3">江苏菜</option>
+                                                        <option th:selected="${type=='4' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=4">闽菜</option>
+                                                        <option th:selected="${type=='5' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=5">浙江菜</option>
+                                                        <option th:selected="${type=='6' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=6">湘菜</option>
+                                                        <option th:selected="${type=='7' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=7">徽菜</option>
+                                                        <option th:selected="${type=='8' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=8">川菜</option>
+                                                        <option th:selected="${type=='9' ? 'true' : 'false'}"
+                                                            value="/all_dishes?dishesCategory=9">外国菜</option>
+                                                    </select>
+                                                </th>
                                                 <th>菜品单价</th>
                                                 <th>修改/删除</th>
                                             </tr>
@@ -101,7 +126,8 @@
                             <form role="form" method="post" th:action="@{/add_dishes}">
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">菜品名</label>
-                                    <input name="dishesName" type="text" class="form-control" placeholder="请输入菜品名">
+                                    <input name="dishesName" type="text" class="form-control" required
+                                        placeholder="请输入菜品名">
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">菜系选择</label>
@@ -120,7 +146,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">单价</label>
-                                    <input name="dishesPrice" type="text" class="form-control" placeholder="请输入单价">
+                                    <input name="dishesPrice" type="text" class="form-control" placeholder="请输入单价"
+                                        onkeyup="value=value.replace(/[^\0-9.]/g,'')"
+                                        onpaste="value=value.replace(/[^\0-9.]/g,'')"
+                                        oncontextmenu="value=value.replace(/[^\0-9.]/g,'')" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">确认添加菜品</button>
                             </form>

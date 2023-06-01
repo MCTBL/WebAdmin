@@ -42,7 +42,7 @@ public class addercontroller {
     @PostMapping("/add_dishes")
     public String addDishes(Dishes dishes) {
         ds.save(dishes);
-        return "redirect:/all_dishes";
+        return "redirect:/all_dishes?dishesCategory=-1";
     }
 
     @PostMapping("/add_order")
@@ -68,7 +68,7 @@ public class addercontroller {
     @GetMapping("/dishes/del/{id}")
     public String deleteDishes(@PathVariable("id") Integer id) {
         ds.removeById(id);
-        return "redirect:/all_dishes";
+        return "redirect:/all_dishes?dishesCategory=-1";
     }
 
 }

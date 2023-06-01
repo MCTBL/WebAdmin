@@ -22,8 +22,6 @@ public class getAllMap {
 
     public void getAll(List<User> user_list, Map<Integer, User> user_map, List<Dishes> dishes_list,
             Map<Integer, Dishes> dishes_map) {
-        user_list = us.list();
-        dishes_list = ds.list();
         for (User t : user_list) {
             user_map.put(t.getUserId(), t);
         }

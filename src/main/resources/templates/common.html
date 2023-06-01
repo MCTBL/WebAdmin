@@ -54,9 +54,11 @@
                     <li th:class="${pageclass=='table' ? 'menu-list nav-active' : 'menu-list'}"><a href="#"><i
                                 class="fa fa-th-list"></i> <span>表格</span></a>
                         <ul class="sub-menu-list">
-                            <li th:class="${page=='all_dishes' ? 'active' : 'deactive'}"><a th:href="@{/all_dishes}">
+                            <li th:class="${page=='all_dishes' ? 'active' : 'deactive'}"><a
+                                    th:href="@{/all_dishes?dishesCategory=-1}">
                                     所有菜品</a></li>
-                            <li th:class="${page=='all_user' ? 'active' : 'deactive'}"><a th:href="@{/all_user}">
+                            <li th:class="${page=='all_user' ? 'active' : 'deactive'}"><a
+                                    th:href="@{/all_user?idAdmin=-1}">
                                     所有用户</a></li>
                             <li th:class="${page=='all_order' ? 'active' : 'deactive'}"><a th:href="@{/all_order}">
                                     所有订单</a></li>

@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mctbl.webadmin.bean.Dishes;
 import com.mctbl.webadmin.bean.Order;
 import com.mctbl.webadmin.bean.User;
 import com.mctbl.webadmin.bean.index_str;
+import com.mctbl.webadmin.mapper.Dishesmapper;
+import com.mctbl.webadmin.mapper.Usermapper;
 import com.mctbl.webadmin.service.DishesService;
 import com.mctbl.webadmin.service.OrderService;
 import com.mctbl.webadmin.service.UserService;
@@ -34,9 +37,21 @@ public class tablecontroller {
     @Autowired
     getAllMap gam;
 
+    @Autowired
+    Dishesmapper dm;
+
+    @Autowired
+    Usermapper um;
+
     @GetMapping("/all_dishes")
-    public String all_dishes(Model model) {
-        List<Dishes> list = ds.list();
+    public String all_dishes(@RequestParam("dishesCategory") String dishesCategory, Model model) {
+        List<Dishes> list;
+        if (Integer.parseInt(dishesCategory) == -1) {
+            list = ds.list();
+        } else {
+            list = dm.getByCategory(Integer.parseInt(dishesCategory));
+        }
+        model.addAttribute("type", dishesCategory);
         model.addAttribute("list", list);
         model.addAttribute("map", index_str.getMap());
         model.addAttribute("page", "all_dishes");
@@ -45,8 +60,14 @@ public class tablecontroller {
     }
 
     @GetMapping("/all_user")
-    public String all_user(Model model) {
-        List<User> list = us.list();
+    public String all_user(@RequestParam("idAdmin") String idAdmin, Model model) {
+        List<User> list;
+        if (Integer.parseInt(idAdmin) == -1) {
+            list = us.list();
+        } else {
+            list = um.getByIsAdmin(Integer.parseInt(idAdmin));
+        }
+        model.addAttribute("type", idAdmin);
         model.addAttribute("list", list);
         model.addAttribute("page", "all_user");
         model.addAttribute("pageclass", "table");
@@ -56,8 +77,8 @@ public class tablecontroller {
     @GetMapping("/all_order")
     public String all_order(Model model) {
         List<Order> order_list = os.list();
-        List<User> user_list = new ArrayList<User>();
-        List<Dishes> dishes_list = new ArrayList<Dishes>();
+        List<User> user_list = us.list();
+        List<Dishes> dishes_list = ds.list();
         Map<Integer, User> user_map = new HashMap<Integer, User>();
         Map<Integer, Dishes> dishes_map = new HashMap<Integer, Dishes>();
         gam.getAll(user_list, user_map, dishes_list, dishes_map);
