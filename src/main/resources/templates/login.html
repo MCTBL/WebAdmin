@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>登陆</title>
+    <link th:include="common :: commonheader">
+</head>
+
+<body class="login-body">
+
+    <div class="container">
+
+        <form class="form-signin" action="index.html" method="post" th:action="@{/login}">
+            <div class="form-signin-heading text-center">
+                <h1 class="sign-title">登录</h1>
+                <div><img src="https://www.qqje.com/logo/2051.jpg" width="118" height="118" alt="" /></div>
+                <br />
+                <label style="color: red;font-size: large;" th:text="${session.msg}"></label>
+            </div>
+            <div class="login-wrap">
+                <input type="text" name="userName" class="form-control" placeholder="用户名" autofocus>
+                <input type="password" name="userPass" class="form-control" placeholder="密码">
+
+                <button class="btn btn-lg btn-login btn-block" type="submit">
+                    <i class="fa fa-check"></i>
+                </button>
+
+                <div class="registration">
+                    还没有账号?
+                    <a class="" href="#">
+                        去注册
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal"
+                class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">忘记了密码 ?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>输入您的电子邮件地址重新设置您的密码.</p>
+                            <input type="text" name="email" placeholder="邮箱" autocomplete="off"
+                                class="form-control placeholder-no-fix">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                            <button class="btn btn-primary" type="button">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+
+        </form>
+
+    </div>
+
+
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.min.js"></script>
+
+</body>
+
+</html>

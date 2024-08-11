@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>所有订单</title>
+    <link th:include="common :: commonheader">
+    <!--pickers css-->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-datepicker/css/datepicker-custom.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-timepicker/css/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+</head>
+
+<body class="sticky-header">
+
+    <section>
+        <div th:include="common :: commonleft"></div>
+
+        <!-- main content start-->
+        <div class="main-content">
+
+            <div th:replace="common :: commonup"></div>
+
+            <!-- page heading start-->
+            <div class="page-heading">
+                <h3 style="font-size: xx-large;">
+                    所有订单
+                </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a th:href="@{/index.html}"> 控制面板 </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/index.html}"> 表格 </a>
+                    </li>
+                    <li class="active"> 所有订单 </li>
+                </ul>
+            </div>
+            <!-- page heading end-->
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                订单表
+                                <a class="btn btn-success tools pull-right" type="button" href="#addOrder"
+                                    data-toggle="modal">新建订单</a>
+                            </header>
+                            <div class="panel-body">
+                                <div class="adv-table">
+                                    <table class="display table table-bordered table-striped" id="dynamic-table">
+                                        <thead>
+                                            <tr>
+                                                <th width="14.28%">订单编号</th>
+                                                <th width="14.28%">客户名</th>
+                                                <th width="14.28%">菜品名</th>
+                                                <th width="14.28%">菜品数量</th>
+                                                <th width="14.28%">订单总价</th>
+                                                <th width="14.28%">下单时间</th>
+                                                <th width="14.28%">修改/删除</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr align="center" class="gradeX" th:each="row : ${list}">
+                                                <td th:text="${row.order_id}"></td>
+                                                <td th:text="${row.order_user_name}"></td>
+                                                <td th:text="${row.order_dishes_name}"></td>
+                                                <td th:text="${row.order_count}"></td>
+                                                <td th:text="${row.order_total_cost}"></td>
+                                                <td th:text="${row.order_time}"></td>
+                                                <td>
+                                                    <div class="btn-group btn-group-justified">
+                                                        <a href="#" class="btn btn-info">修改</a>
+                                                        <a th:href="@{/order/del/{id}(id=${row.order_id})}"
+                                                            class="btn btn-danger">删除</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th width="14.28%">订单编号</th>
+                                                <th width="14.28%">客户名</th>
+                                                <th width="14.28%">菜品名</th>
+                                                <th width="14.28%">菜品数量</th>
+                                                <th width="14.28%">订单总价</th>
+                                                <th width="14.28%">下单时间</th>
+                                                <th width="14.28%">修改/删除</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <!--body wrapper end-->
+
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addOrder"
+                class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h4 class="modal-title">新建订单</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" method="post" th:action="@{/add_order}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"> 选择时间</label>
+                                    <div class="col-md-6">
+                                        <input size="16" type="datetime" value="2023-05-01 00:00" readonly
+                                            class="form_datetime form-control" name="time">
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <div class="icheckbox_minimal">
+                                            <input type="checkbox" name="useCurrentTime">
+                                        </div>
+                                        <label>使用当前时间</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">下单客户</label>
+                                    <select class="form-control m-bot15" name="orderUserId">
+                                        <div th:each="user : ${user_list}">
+                                            <option th:value="${user.userId}" th:text="${user.userName}"></option>
+                                        </div>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">菜品选择</label>
+                                    <select class="form-control m-bot15" name="orderDishesId">
+                                        <div th:each="dishes : ${dishes_list}">
+                                            <option th:value="${dishes.dishesId}" th:text="${dishes.dishesName}">
+                                            </option>
+                                        </div>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">下单数量</label>
+                                    <input name="orderCount" type="text" class="form-control" placeholder="请输入下单数量"
+                                        required onkeyup="value=value.replace(/[^\d]/g,'')">
+                                </div>
+                                <button type="submit" class="btn btn-primary">确认添加订单</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div th:replace="common :: commonfooter">
+
+
+            </div>
+            <!-- main content end-->
+    </section>
+
+
+
+    <!--dynamic table-->
+    <script type="text/javascript" language="javascript" src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+    <!--dynamic table initialization -->
+    <script src="js/dynamic_table_init.js"></script>
+
+    <div th:include="common :: commonscript"></div>
+
+    <!--pickers plugins-->
+    <script type="text/javascript" src="js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script type="text/javascript" src="js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+    <!--pickers initialization-->
+    <script src="js/pickers-init.js"></script>
+
+
+
+
+
+</body>
+
+</html>
